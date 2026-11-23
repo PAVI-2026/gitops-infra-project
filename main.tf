@@ -8,6 +8,6 @@ terraform {
 }
 
 resource "local_file" "infra_config" {
-  content  = "Environment: Production | Deployed via GitOps PR Merge!"
+  content  = "Environment: Production-v2 | Deployed via GitOps PR Merge!"
   filename = "${path.module}/deployed_infra.txt"
 }

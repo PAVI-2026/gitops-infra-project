@@ -1,11 +1,13 @@
-provider "aws" {
-  region = "ap-south-1"
+terraform {
+  required_providers {
+    local = {
+      source  = "hashicorp/local"
+      version = "~> 2.4"
+    }
+  }
 }
 
-resource "random_id" "suffix" {
-  byte_length = 4
-}
-
-resource "aws_s3_bucket" "gitops_demo" {
-  bucket = "gitops-project18-demo-${random_id.suffix.hex}"
+resource "local_file" "infra_config" {
+  content  = "Environment: Production-v2 | Deployed via GitOps PR Merge!"
+  filename = "${path.module}/deployed_infra.txt"
 }
